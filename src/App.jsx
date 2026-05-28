@@ -671,7 +671,7 @@ function Footer() {
             <div style={{ display: 'flex', justifyContent: 'center', gap: 28, flexWrap: 'wrap' }}>
               {[
                 { label: 'GitHub', href: 'https://github.com/visvesvaran62' },
-                { label: 'LinkedIn', href: 'https://linkedin.com' },
+                { label: 'LinkedIn', href: 'http://www.linkedin.com/in/visvesvaran-g-59a5313b9' },
               ].map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.2s' }}

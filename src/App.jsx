@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import professional from './assets/profess.png'
+import { FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 
 
@@ -40,6 +42,11 @@ const TAGS = {
   mongo: { label: 'MongoDB', color: '#4DB33D' },
   api: { label: 'REST API', color: '#f59e0b' },
   fetch: { label: 'Fetch API', color: '#63d2ff' },
+
+  nodejs: { label: 'Node.js', color: '#00e5a0' },
+  expressjs: { label: 'Express.js', color: '#aaaaaa' },
+  mongodb: { label: 'MongoDB', color: '#4DB33D' },
+  Geminiai: { label: 'Gemini AI', color: '#ff6b6b' },
 }
 
 const PROJECTS = [
@@ -61,8 +68,27 @@ const PROJECTS = [
     github: 'https://github.com/visvesvaran62',
   },
   {
-    id: 2,
-    num: '02',
+  id: 2,
+  num: '02',
+  title: 'DevPath AI',
+  subtitle: 'AI-Powered Learning Roadmap Platform',
+  period: '2025 – Present',
+  desc: 'An AI-driven learning platform that generates personalized roadmaps based on user goals and skill levels. Features task tracking, progress analytics, authentication, and an intelligent AI mentor for guided learning and career development.',
+tags: ['react', 'nodejs', 'expressjs', 'mongodb', 'Geminiai'],
+  highlights: [
+    'AI-generated personalized learning roadmaps',
+    'Task management & progress tracking dashboard',
+    'JWT authentication and secure user management',
+    'AI mentor chatbot for learning guidance',
+    'Responsive full-stack MERN architecture',
+  ],
+  accent: '#00C896',
+  link: 'https://devpath-omega.vercel.app/',
+  github: 'https://github.com/visvesvaran62/devpath-ai',
+},
+  {
+    id: 3,
+    num: '03',
     title: 'WeatherNow',
     subtitle: 'Forecast Application',
     period: 'Feb 2024 – Mar 2024',
@@ -201,6 +227,22 @@ function Navbar({ active, onNav }) {
             e.target.style.boxShadow = 'none'
           }}
         >hire_me</a>
+
+        <a
+  href="https://drive.google.com/file/d/1VFpib-lY2nacr0BUEt0kMcMMdnds30h3/view?usp=drive_link"
+  download
+  style={{
+    fontFamily: 'var(--font-mono)',
+    fontSize: 12,
+    padding: '8px 20px',
+    border: '1px solid var(--accent)',
+    borderRadius: 6,
+    color: 'var(--accent)',
+    textDecoration: 'none',
+  }}
+>
+  Resume
+</a>
       </div>
     </nav>
   )
@@ -288,11 +330,11 @@ function Hero({ onNav }) {
 
         <div className="animate-fade-up delay-600" style={{ marginTop: 100, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--border)', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }}>
           {[
-            { val: '2+', label: 'Projects Completed' },
-            { val: 'MCA', label: 'Education Level' },
-            { val: '5+', label: 'Tech Stack' },
-            { val: '100%', label: 'Commitment' },
-          ].map(stat => (
+ { val: '5+', label: 'Projects Built' },
+ { val: 'MERN', label: 'Tech Stack' },
+ { val: 'MCA', label: 'Graduate' },
+ { val: '1+', label: 'Years Learning' },
+].map(stat => (
             <div key={stat.label} style={{ background: 'var(--surface)', padding: 32, textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 32, color: 'var(--accent)', letterSpacing: '-0.04em' }}>{stat.val}</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--muted)', marginTop: 8, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{stat.label}</div>
@@ -460,23 +502,73 @@ function Projects() {
                 </div>
               </div>
 
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
-                <a href={p.github} target="_blank" rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-mono)', fontSize: 12, padding: '10px 20px',
-                    border: '1px solid var(--border)', borderRadius: 8,
-                    color: 'var(--muted)', textDecoration: 'none',
-                    display: 'flex', alignItems: 'center', gap: 8,
-                    transition: 'all 0.2s', whiteSpace: 'nowrap',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--muted)' }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                  GitHub
-                </a>
-              </div>
+     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
+
+  {/* Live Demo Button */}
+<a
+  href={p.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    fontFamily: 'var(--font-mono)',
+    fontSize: 12,
+    padding: '10px 20px',
+    border: '1px solid var(--accent)',
+    borderRadius: 8,
+    color: 'var(--accent)',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    transition: 'all 0.2s',
+    whiteSpace: 'nowrap',
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.background = 'rgba(56,189,248,0.1)';
+    e.currentTarget.style.color = 'var(--accent)';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.background = 'transparent';
+    e.currentTarget.style.color = 'var(--accent)';
+  }}
+>
+  <FaExternalLinkAlt size={12} />
+  Live Demo
+</a>
+
+  {/* GitHub Button */}
+ <a
+  href={p.github}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    fontFamily: 'var(--font-mono)',
+    fontSize: 12,
+    padding: '10px 20px',
+    border: '1px solid var(--border)',
+    borderRadius: 8,
+    color: 'var(--muted)',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    transition: 'all 0.2s',
+    whiteSpace: 'nowrap',
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.borderColor = 'var(--accent)';
+    e.currentTarget.style.color = 'var(--accent)';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.borderColor = 'var(--border)';
+    e.currentTarget.style.color = 'var(--muted)';
+  }}
+>
+  <FaGithub size={14} />
+  GitHub
+</a>
+
+</div>
 
             </div>
           </div>

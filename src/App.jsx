@@ -47,12 +47,49 @@ const TAGS = {
   expressjs: { label: 'Express.js', color: '#aaaaaa' },
   mongodb: { label: 'MongoDB', color: '#4DB33D' },
   Geminiai: { label: 'Gemini AI', color: '#ff6b6b' },
+  jwt: { label: 'JWT', color: '#e53e3e' },
 }
 
 const PROJECTS = [
   {
     id: 1,
     num: '01',
+    title: 'DevPath AI',
+    subtitle: 'AI-Powered Learning Roadmap Platform',
+    period: '2025 – Present',
+    desc: 'An AI-driven learning platform that generates personalized roadmaps based on user goals and skill levels. Features task tracking, progress analytics, authentication, and an intelligent AI mentor for guided learning and career development.',
+    tags: ['react', 'nodejs', 'expressjs', 'mongodb', 'Geminiai'],
+    highlights: [
+      'AI-generated personalized learning roadmaps',
+      'Task management & progress tracking dashboard',
+      'JWT authentication and secure user management',
+      'AI mentor chatbot for learning guidance',
+      'Responsive full-stack MERN architecture',
+    ],
+    accent: '#00C896',
+    link: 'https://devpath-omega.vercel.app/',
+    github: 'https://github.com/visvesvaran62/devpath-ai',
+  }, {
+    id: 2,
+    num: '02',
+    title: 'Gym Management System',
+    subtitle: 'Full-Stack MERN Fitness Management Platform',
+    period: '2025 – Present',
+    desc: 'A full-stack Gym Management System built with the MERN stack that helps manage members, trainers, memberships, attendance, and fitness plans. It provides secure authentication, an admin dashboard, and responsive user interfaces for efficient gym operations.',
+    tags: ['react', 'nodejs', 'expressjs', 'mongodb', 'jwt'],
+    highlights: [
+      'Member registration and profile management',
+      'Trainer management and workout plan assignment',
+      'Membership plans with renewal tracking',
+      'JWT authentication and role-based authorization',
+      'Responsive MERN stack application with admin dashboard',
+    ],
+    accent: '#FF6B35',
+    link: 'https://gym-management-xi-bay.vercel.app/',
+    github: 'https://github.com/visvesvaran62/gym-management',
+  }, {
+    id: 3,
+    num: '03',
     title: 'SmartCart',
     subtitle: 'Product Listing App',
     period: 'Dec 2024 – Jan 2025',
@@ -68,27 +105,8 @@ const PROJECTS = [
     github: 'https://github.com/visvesvaran62',
   },
   {
-  id: 2,
-  num: '02',
-  title: 'DevPath AI',
-  subtitle: 'AI-Powered Learning Roadmap Platform',
-  period: '2025 – Present',
-  desc: 'An AI-driven learning platform that generates personalized roadmaps based on user goals and skill levels. Features task tracking, progress analytics, authentication, and an intelligent AI mentor for guided learning and career development.',
-tags: ['react', 'nodejs', 'expressjs', 'mongodb', 'Geminiai'],
-  highlights: [
-    'AI-generated personalized learning roadmaps',
-    'Task management & progress tracking dashboard',
-    'JWT authentication and secure user management',
-    'AI mentor chatbot for learning guidance',
-    'Responsive full-stack MERN architecture',
-  ],
-  accent: '#00C896',
-  link: 'https://devpath-omega.vercel.app/',
-  github: 'https://github.com/visvesvaran62/devpath-ai',
-},
-  {
-    id: 3,
-    num: '03',
+    id: 4,
+    num: '04',
     title: 'WeatherNow',
     subtitle: 'Forecast Application',
     period: 'Feb 2024 – Mar 2024',
@@ -231,22 +249,22 @@ function Navbar({ active, onNav }) {
         >hire_me</a>
 
         <a
-  href="https://drive.google.com/file/d/1VFpib-lY2nacr0BUEt0kMcMMdnds30h3/view?usp=drive_link"
-  download
-  style={{
-    fontFamily: 'var(--font-mono)',
-    fontSize: 13,
-    fontWeight: 600,
-    padding: '10px 22px',
-    border: '1.5px solid var(--accent)',
-    borderRadius: 8,
-    color: 'var(--accent)',
-    textDecoration: 'none',
-    transition: 'all 0.2s',
-  }}
->
-  Resume
-</a>
+          href="https://drive.google.com/file/d/1VFpib-lY2nacr0BUEt0kMcMMdnds30h3/view?usp=drive_link"
+          download
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 13,
+            fontWeight: 600,
+            padding: '10px 22px',
+            border: '1.5px solid var(--accent)',
+            borderRadius: 8,
+            color: 'var(--accent)',
+            textDecoration: 'none',
+            transition: 'all 0.2s',
+          }}
+        >
+          Resume
+        </a>
       </div>
     </nav>
   )
@@ -333,11 +351,11 @@ function Hero({ onNav }) {
 
         <div className="animate-fade-up delay-600" style={{ marginTop: 100, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--border-subtle)', borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(15,23,42,0.08)' }}>
           {[
- { val: '5+', label: 'Projects Built' },
- { val: 'MERN', label: 'Tech Stack' },
- { val: 'MCA', label: 'Graduate' },
- { val: '1+', label: 'Years Learning' },
-].map(stat => (
+            { val: '5+', label: 'Projects Built' },
+            { val: 'MERN', label: 'Tech Stack' },
+            { val: 'MCA', label: 'Graduate' },
+            { val: '1+', label: 'Years Learning' },
+          ].map(stat => (
             <div key={stat.label} style={{ background: 'var(--surface)', padding: 32, textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 38, color: 'var(--accent)', letterSpacing: '-0.04em' }}>{stat.val}</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--muted)', marginTop: 10, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{stat.label}</div>
@@ -384,7 +402,7 @@ function About() {
 
 function Skills() {
   const [ref, inView] = useInView()
-  const allTags = ['React.js','Node.js','Express.js','MongoDB','JavaScript','HTML5','CSS3','Tailwind CSS','Context API','React Router','REST APIs','Git','Vercel','Render','MySQL']
+  const allTags = ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Context API', 'React Router', 'REST APIs', 'Git', 'Vercel', 'Render', 'MySQL']
 
   return (
     <section id="Skills" ref={ref} style={{ padding: '120px 0', background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', overflow: 'hidden' }}>
@@ -395,7 +413,7 @@ function Skills() {
           </h2>
         </div>
 
-       
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 60 }}>
           {Object.entries(SKILLS).map(([cat, items], ci) => (
             <div key={cat} className={`glass ${inView ? `animate-fade-up delay-${ci * 100 + 100}` : ''}`}
@@ -422,7 +440,7 @@ function Skills() {
           ))}
         </div>
 
-        
+
         <div style={{ overflow: 'hidden', position: 'relative', padding: '20px 0' }}>
           <div style={{ display: 'flex', gap: 12, width: 'max-content' }} className="animate-marquee">
             {[...allTags, ...allTags].map((t, i) => (
@@ -457,7 +475,7 @@ function Projects() {
             className={`proj-card glass ${inView ? `animate-fade-up delay-${i * 200 + 100}` : ''}`}
             style={{ padding: '40px 44px', position: 'relative', overflow: 'hidden' }}
           >
-            
+
             <div style={{
               position: 'absolute', right: 32, top: 24,
               fontFamily: 'var(--font-display)', fontWeight: 800,
@@ -465,7 +483,7 @@ function Projects() {
               userSelect: 'none', lineHeight: 1,
             }}>{p.num}</div>
 
-           
+
             <div style={{ position: 'absolute', left: 0, top: 40, bottom: 40, width: 3, background: p.accent, borderRadius: '0 2px 2px 0' }} />
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40 }}>
@@ -478,7 +496,7 @@ function Projects() {
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: p.accent, letterSpacing: '0.05em', marginBottom: 18, fontWeight: 500 }}>{p.subtitle}</div>
                 <p style={{ color: 'var(--muted)', lineHeight: 1.85, maxWidth: 580, marginBottom: 26, fontSize: 16 }}>{p.desc}</p>
 
-                
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
                   {p.highlights.map(h => (
                     <div key={h} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -488,7 +506,7 @@ function Projects() {
                   ))}
                 </div>
 
-               
+
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {p.tags.map(t => {
                     const tag = TAGS[t]
@@ -505,73 +523,73 @@ function Projects() {
                 </div>
               </div>
 
-     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
 
-  {/* Live Demo Button */}
-<a
-  href={p.link}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    fontFamily: 'var(--font-mono)',
-    fontSize: 12,
-    padding: '10px 20px',
-    border: '1px solid var(--accent)',
-    borderRadius: 8,
-    color: 'var(--accent)',
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    transition: 'all 0.2s',
-    whiteSpace: 'nowrap',
-  }}
-  onMouseEnter={e => {
-    e.currentTarget.style.background = 'rgba(79,126,248,0.08)';
-    e.currentTarget.style.color = 'var(--accent)';
-  }}
-  onMouseLeave={e => {
-    e.currentTarget.style.background = 'transparent';
-    e.currentTarget.style.color = 'var(--accent)';
-  }}
->
-  <FaExternalLinkAlt size={12} />
-  Live Demo
-</a>
+                {/* Live Demo Button */}
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 12,
+                    padding: '10px 20px',
+                    border: '1px solid var(--accent)',
+                    borderRadius: 8,
+                    color: 'var(--accent)',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    transition: 'all 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = 'rgba(79,126,248,0.08)';
+                    e.currentTarget.style.color = 'var(--accent)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = 'var(--accent)';
+                  }}
+                >
+                  <FaExternalLinkAlt size={12} />
+                  Live Demo
+                </a>
 
-  {/* GitHub Button */}
- <a
-  href={p.github}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    fontFamily: 'var(--font-mono)',
-    fontSize: 12,
-    padding: '10px 20px',
-    border: '1px solid var(--border)',
-    borderRadius: 8,
-    color: 'var(--muted)',
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    transition: 'all 0.2s',
-    whiteSpace: 'nowrap',
-  }}
-  onMouseEnter={e => {
-    e.currentTarget.style.borderColor = 'var(--accent)';
-    e.currentTarget.style.color = 'var(--accent)';
-  }}
-  onMouseLeave={e => {
-    e.currentTarget.style.borderColor = 'var(--border)';
-    e.currentTarget.style.color = 'var(--muted)';
-  }}
->
-  <FaGithub size={14} />
-  GitHub
-</a>
+                {/* GitHub Button */}
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 12,
+                    padding: '10px 20px',
+                    border: '1px solid var(--border)',
+                    borderRadius: 8,
+                    color: 'var(--muted)',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    transition: 'all 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'var(--accent)';
+                    e.currentTarget.style.color = 'var(--accent)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.color = 'var(--muted)';
+                  }}
+                >
+                  <FaGithub size={14} />
+                  GitHub
+                </a>
 
-</div>
+              </div>
 
             </div>
           </div>
@@ -593,7 +611,7 @@ function Education() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
-          
+
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 28, textTransform: 'uppercase', fontWeight: 600 }}>Degrees</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -668,14 +686,14 @@ function Contact() {
   return (
     <section id="Contact" ref={ref} style={{ padding: '120px 48px', maxWidth: 1200, margin: '0 auto' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
-        
+
         <div className={inView ? 'animate-fade-up' : ''}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 52, letterSpacing: '-0.03em', color: 'var(--text)', marginBottom: 24, lineHeight: 1.1 }}>
             Let's build<br /><span className="grad-text">something great</span>
           </h2>
           <p style={{ color: 'var(--muted)', lineHeight: 1.9, marginBottom: 44, fontSize: 17 }}>
-            I'm actively looking for full-stack, front-end, or MERN developer roles. 
-            Whether you have a project in mind, a position open, or just want to connect — 
+            I'm actively looking for full-stack, front-end, or MERN developer roles.
+            Whether you have a project in mind, a position open, or just want to connect —
             I'd love to hear from you.
           </p>
 
@@ -709,7 +727,7 @@ function Contact() {
             <div>
               <label style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: 10, fontWeight: 500 }}>name</label>
               <input type="text" placeholder="Your Name" value={form.name}
-                onChange={e => setForm(p => ({...p, name: e.target.value}))}
+                onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                 style={inputStyle(false)}
                 onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
@@ -718,7 +736,7 @@ function Contact() {
             <div>
               <label style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: 10, fontWeight: 500 }}>email</label>
               <input type="email" placeholder="your@email.com" value={form.email}
-                onChange={e => setForm(p => ({...p, email: e.target.value}))}
+                onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                 style={inputStyle(false)}
                 onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
@@ -727,7 +745,7 @@ function Contact() {
             <div>
               <label style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: 10, fontWeight: 500 }}>message</label>
               <textarea placeholder="Tell me about the opportunity or project..." value={form.message}
-                onChange={e => setForm(p => ({...p, message: e.target.value}))}
+                onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                 rows={5} style={{ ...inputStyle(false), resize: 'none' }}
                 onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
@@ -781,8 +799,8 @@ function Footer() {
             © 2026 Visvesvaran G · Built with ❤️ & React
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-             <span style={{ fontSize: 14, color: 'var(--muted)' }}>Chennai, India</span>
-             <span style={{ fontSize: 14, color: 'var(--muted)' }}>visvesvaran62@email.com</span>
+            <span style={{ fontSize: 14, color: 'var(--muted)' }}>Chennai, India</span>
+            <span style={{ fontSize: 14, color: 'var(--muted)' }}>visvesvaran62@email.com</span>
           </div>
         </div>
       </div>
@@ -801,7 +819,7 @@ export default function App() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  
+
   useEffect(() => {
     const observers = NAV.map(id => {
       const el = document.getElementById(id)

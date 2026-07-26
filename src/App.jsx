@@ -188,15 +188,17 @@ function Cursor() {
 
 function Navbar({ active, onNav }) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', fn)
     return () => window.removeEventListener('scroll', fn)
   }, [])
+
   return (
-    <nav style={{
+    <nav className="navbar" style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      padding: '0 48px',
       height: 68,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       background: scrolled ? 'rgba(248, 249, 252, 0.88)' : 'transparent',
@@ -213,11 +215,11 @@ function Navbar({ active, onNav }) {
         <span style={{ color: 'var(--accent2)' }}>aran</span>
         <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent3)', fontSize: 22, marginLeft: 4 }}> G</span>
       </div>
-      <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+      <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
         {NAV.map(item => (
           <button
             key={item}
-            onClick={() => onNav(item)}
+            onClick={() => { onNav(item); setMenuOpen(false); }}
             className={`nav-link ${active === item ? 'active' : ''}`}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
@@ -266,6 +268,11 @@ function Navbar({ active, onNav }) {
           Resume
         </a>
       </div>
+      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <span className={menuOpen ? 'bar open' : 'bar'}></span>
+        <span className={menuOpen ? 'bar open' : 'bar'}></span>
+        <span className={menuOpen ? 'bar open' : 'bar'}></span>
+      </div>
     </nav>
   )
 }
@@ -294,18 +301,18 @@ function Hero({ onNav }) {
   }, [typed, deleting, rIdx])
 
   return (
-    <section id="Home" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 68 }}>
+    <section id="Home" className="section-padding" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 68 }}>
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: 0.6 }} />
       <div className="orb animate-glow" style={{ width: 600, height: 600, background: 'rgba(79,126,248,0.10)', top: -100, right: -100, animationDelay: '0s' }} />
       <div className="orb animate-glow" style={{ width: 400, height: 400, background: 'rgba(37,99,235,0.08)', bottom: 50, left: -80, animationDelay: '1.5s' }} />
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', width: '100%', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 60, alignItems: 'center' }}>
+      <div className="container-padding" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', width: '100%', position: 'relative', zIndex: 1 }}>
+        <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 60, alignItems: 'center' }}>
           <div>
             <div className="animate-fade-up" style={{ marginBottom: 28 }}>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600, letterSpacing: '0.12em', color: 'var(--accent)', textTransform: 'uppercase', padding: '8px 20px', border: '1.5px solid rgba(79,126,248,0.25)', borderRadius: 99, background: 'rgba(79,126,248,0.07)' }}>Available for new projects</span>
             </div>
-            <h1 className="animate-fade-up delay-100" style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(56px, 7vw, 92px)', lineHeight: 1, letterSpacing: '-0.04em', marginBottom: 24, color: 'var(--text)' }}>
+            <h1 className="hero-title animate-fade-up delay-100" style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(56px, 7vw, 92px)', lineHeight: 1, letterSpacing: '-0.04em', marginBottom: 24, color: 'var(--text)' }}>
               Visvesvaran<br /><span className="grad-text" />
             </h1>
             <div className="animate-fade-up delay-200" style={{ marginBottom: 36, height: 48, display: 'flex', alignItems: 'center' }}>
@@ -349,7 +356,7 @@ function Hero({ onNav }) {
           </div>
         </div>
 
-        <div className="animate-fade-up delay-600" style={{ marginTop: 100, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--border-subtle)', borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(15,23,42,0.08)' }}>
+        <div className="stats-grid animate-fade-up delay-600" style={{ marginTop: 100, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--border-subtle)', borderRadius: 20, overflow: 'hidden', boxShadow: '0 8px 32px rgba(15,23,42,0.08)' }}>
           {[
             { val: '5+', label: 'Projects Built' },
             { val: 'MERN', label: 'Tech Stack' },
@@ -370,7 +377,7 @@ function Hero({ onNav }) {
 function About() {
   const [ref, inView] = useInView()
   return (
-    <section id="About" ref={ref} style={{ padding: '120px 48px' }}>
+    <section id="About" ref={ref} className="section-padding" style={{ padding: '120px 48px' }}>
       <div style={{ maxWidth: 760, margin: '0 auto', width: '100%' }}>
         <h2 className={inView ? 'animate-fade-up' : ''} style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 52, letterSpacing: '-0.03em', marginBottom: 28, lineHeight: 1.1, color: 'var(--text)' }}>
           Building the<br /><span className="grad-text">web that matters</span>
@@ -405,8 +412,8 @@ function Skills() {
   const allTags = ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Context API', 'React Router', 'REST APIs', 'Git', 'Vercel', 'Render', 'MySQL']
 
   return (
-    <section id="Skills" ref={ref} style={{ padding: '120px 0', background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', overflow: 'hidden' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
+    <section id="Skills" ref={ref} className="section-padding" style={{ padding: '120px 0', background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', overflow: 'hidden' }}>
+      <div className="container-padding" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
         <div style={{ marginBottom: 64, textAlign: 'center' }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 42, letterSpacing: '-0.03em', color: 'var(--text)' }}>
             Skills & <span className="grad-text">Expertise</span>
@@ -414,7 +421,7 @@ function Skills() {
         </div>
 
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 60 }}>
+        <div className="skills-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 60 }}>
           {Object.entries(SKILLS).map(([cat, items], ci) => (
             <div key={cat} className={`glass ${inView ? `animate-fade-up delay-${ci * 100 + 100}` : ''}`}
               style={{ padding: '28px 32px' }}>
@@ -461,7 +468,7 @@ function Skills() {
 function Projects() {
   const [ref, inView] = useInView()
   return (
-    <section id="Projects" ref={ref} style={{ padding: '120px 48px', maxWidth: 1200, margin: '0 auto' }}>
+    <section id="Projects" ref={ref} className="section-padding" style={{ padding: '120px 48px', maxWidth: 1200, margin: '0 auto' }}>
       <div style={{ marginBottom: 64 }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 42, letterSpacing: '-0.03em', color: 'var(--text)' }}>
           Featured <span className="grad-text">Projects</span>
@@ -472,11 +479,11 @@ function Projects() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
         {PROJECTS.map((p, i) => (
           <div key={p.id}
-            className={`proj-card glass ${inView ? `animate-fade-up delay-${i * 200 + 100}` : ''}`}
+            className={`proj-card glass project-card-padding ${inView ? `animate-fade-up delay-${i * 200 + 100}` : ''}`}
             style={{ padding: '40px 44px', position: 'relative', overflow: 'hidden' }}
           >
 
-            <div style={{
+            <div className="project-num" style={{
               position: 'absolute', right: 32, top: 24,
               fontFamily: 'var(--font-display)', fontWeight: 800,
               fontSize: 80, color: 'rgba(255,255,255,0.025)', letterSpacing: '-0.05em',
@@ -486,7 +493,7 @@ function Projects() {
 
             <div style={{ position: 'absolute', left: 0, top: 40, bottom: 40, width: 3, background: p.accent, borderRadius: '0 2px 2px 0' }} />
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40 }}>
+            <div className="project-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40 }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12.5, color: 'var(--muted)', letterSpacing: '0.08em', fontWeight: 500 }}>{p.period}</span>
@@ -523,7 +530,7 @@ function Projects() {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
+              <div className="project-actions" style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'flex-start', paddingTop: 44 }}>
 
                 {/* Live Demo Button */}
                 <a
@@ -602,7 +609,7 @@ function Projects() {
 function Education() {
   const [ref, inView] = useInView()
   return (
-    <section id="Education" ref={ref} style={{ padding: '120px 48px', background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+    <section id="Education" ref={ref} className="section-padding" style={{ padding: '120px 48px', background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ marginBottom: 64, textAlign: 'center' }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 52, letterSpacing: '-0.03em', color: 'var(--text)' }}>
@@ -610,7 +617,7 @@ function Education() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
+        <div className="edu-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
 
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 28, textTransform: 'uppercase', fontWeight: 600 }}>Degrees</div>
@@ -684,8 +691,8 @@ function Contact() {
   })
 
   return (
-    <section id="Contact" ref={ref} style={{ padding: '120px 48px', maxWidth: 1200, margin: '0 auto' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
+    <section id="Contact" ref={ref} className="section-padding" style={{ padding: '120px 48px', maxWidth: 1200, margin: '0 auto' }}>
+      <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
 
         <div className={inView ? 'animate-fade-up' : ''}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 52, letterSpacing: '-0.03em', color: 'var(--text)', marginBottom: 24, lineHeight: 1.1 }}>
@@ -721,7 +728,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className={`glass-accent ${inView ? 'animate-fade-up delay-200' : ''}`} style={{ padding: '40px 44px' }}>
+        <div className={`glass-accent contact-form-padding ${inView ? 'animate-fade-up delay-200' : ''}`} style={{ padding: '40px 44px' }}>
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 24, color: 'var(--text)', marginBottom: 32 }}>Send a Message</div>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div>
@@ -771,7 +778,7 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer style={{
+    <footer className="footer-padding" style={{
       borderTop: '1px solid var(--border)',
       padding: '64px 48px',
       background: 'var(--bg)',
